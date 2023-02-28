@@ -28,7 +28,8 @@ def upload_file(audio_file, header):
 # Request transcript for file uploaded to AAI servers
 def request_transcript(upload_url, header):
     transcript_request = {
-        'audio_url': upload_url['upload_url']
+        'audio_url': upload_url['upload_url'],
+        'auto_chapters': True
     }
     transcript_response = requests.post(
         transcript_endpoint,
@@ -52,7 +53,7 @@ def wait_for_completion(polling_endpoint, header):
         polling_response = polling_response.json()
 
         if polling_response['status'] == 'completed':
-            break
+            return polling_response
 
         time.sleep(5)
 
@@ -68,3 +69,6 @@ def get_paragraphs(polling_endpoint, header):
 
     return paragraphs
 
+
+def get_chapters(polling_response):
+    return polling_response['chapters']
