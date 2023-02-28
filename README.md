@@ -31,7 +31,7 @@ $ export AAI_API_KEY=<YOUR_API_KEY>
 If your AssemblyAI API key is stored as an environment variable called `AAI_API_KEY` file, then you can omit the optional `--api_key` argument.
 
 ```console
-$ python transcribe.py audio_file [--local] [--api_key=<YOUR-API-KEY>"]
+$ python transcribe.py audio_file [--local] [--api_key=<YOUR-API-KEY>]
 ```
 
 Example for hosted file:
