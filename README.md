@@ -37,7 +37,7 @@ $ python transcribe.py audio_file [--local] [--api_key=<YOUR-API-KEY>]
 Example for hosted file:
 
 ```console
-$ python transcribe.py https://www.youtube.com/watch?v=wRRsXxE1KVY&t=223s [--api_key=<YOUR-API-KEY>]
+$ python transcribe.py https://bit.ly/3qDXLG8 [--api_key=<YOUR-API-KEY>]
 ```
 
 Example for local file:
