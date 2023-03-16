@@ -51,7 +51,7 @@ $ python transcribe.py audio.mp3 --local [--api_key=<YOUR-API-KEY>]
 ## Sample Output
 As mentioned above, this program only gives output for the Summarization, Entity Detection and Sentiment Analysis features of Assembly AI.
 
-`
+```
 Here is the summary for the input transcript:
 AssemblyAI is a deep learning company that builds powerful APIs to help you transcribe and understand audio. The most common use case for the API is to automatically convert prerecorded audio and video files into text transcriptions. Every day, developers are using these features to build really exciting applications.
 
@@ -72,4 +72,4 @@ The following represents a count of sentences in the transcript with a sentiment
 0  NEGATIVE      1
 1   NEUTRAL     12
 2  POSITIVE      9
-`
+```
