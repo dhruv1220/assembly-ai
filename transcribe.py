@@ -37,18 +37,11 @@ def main():
 
     # Wait until the transcription is complete
     polling_response = utils.wait_for_completion(polling_endpoint, header)
-
-    # # Request the paragraphs of the transcript
-    # paragraphs = utils.get_paragraphs(polling_endpoint, header)
-
-    chapters = utils.get_chapters(polling_response)
-    print(chapters)
-
-    # # Save and print transcript
-    # with open('transcript.txt', 'w') as f:
-    #     for para in paragraphs:
-    #         print(para['text'] + '\n')
-    #         f.write(para['text'] + '\n')
+    # print(polling_response)
+    
+    utils.get_summary(polling_response)
+    utils.get_entities(polling_response)
+    utils.get_sentiments(polling_response)
 
     return
 

@@ -1,5 +1,6 @@
 import requests
 import time
+import pandas as pd
 
 
 upload_endpoint = "https://api.assemblyai.com/v2/upload"
@@ -29,7 +30,12 @@ def upload_file(audio_file, header):
 def request_transcript(upload_url, header):
     transcript_request = {
         'audio_url': upload_url['upload_url'],
-        'auto_chapters': True
+        # 'auto_chapters': True,
+        "summarization": True,
+        "summary_model": "informative",
+        "summary_type": "paragraph",
+        "entity_detection": True,
+        "sentiment_analysis": True
     }
     transcript_response = requests.post(
         transcript_endpoint,
@@ -70,5 +76,36 @@ def get_paragraphs(polling_endpoint, header):
     return paragraphs
 
 
+# Print the chapters of the transcript
 def get_chapters(polling_response):
     return polling_response['chapters']
+
+
+# Print the summary of the transcript
+def get_summary(polling_response):
+    summary = polling_response['summary']
+    print('Here is the summary for the input transcript:')
+    print(summary)
+    print()
+
+
+# Print the entities of the transcript
+def get_entities(polling_response):
+    entities = polling_response['entities']
+    df = pd.DataFrame(entities)
+    df = df[['entity_type','text']]
+    df = df.groupby(['entity_type','text']).text.agg('count').to_frame('count').reset_index()
+    print('The following table represents all entities present in the transcript:')
+    print(df)
+    print()
+
+
+# Print the sentiment statistics of the transcript
+def get_sentiments(polling_response):
+    sentiments = polling_response['sentiment_analysis_results']
+    df = pd.DataFrame(sentiments)
+    df = df[['sentiment']]
+    df = df.groupby(['sentiment']).sentiment.agg('count').to_frame('count').reset_index()
+    print('The following represents a count of sentences in the transcript with a sentiment:')
+    print(df)
+    print()
